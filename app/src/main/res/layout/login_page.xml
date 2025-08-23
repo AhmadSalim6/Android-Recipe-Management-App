@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="?android:attr/windowBackground">
+
+    <ImageView
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:background="@drawable/logo"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="35dp"
+        android:clipToOutline="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_gravity="start"
+        android:textSize="30dp"
+        android:textColor="?attr/android:textColor"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:fontFamily="@font/lexend_semi_bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/login_edit_txt_bg"
+        android:layout_marginHorizontal="40dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            app:tint="?attr/colorOnPrimary"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/user"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/login_edit_txt_bg"
+            android:hint="name"
+            android:fontFamily="@font/lexend_semi_bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/login_edit_txt_bg"
+        android:layout_marginHorizontal="40dp">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            app:tint="?attr/colorOnPrimary"
+            android:src="@drawable/email"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/login_edit_txt_bg"
+            android:hint=" user name or email"
+            android:fontFamily="@font/lexend_semi_bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/login_edit_txt_bg"
+        android:layout_marginHorizontal="40dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            app:tint="?attr/colorOnPrimary"
+
+            android:src="@drawable/padlock"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/login_edit_txt_bg"
+            android:hint="password"
+            android:fontFamily="@font/lexend_semi_bold"/>
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up?"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnPrimary"
+        style="?attr/borderlessButtonStyle"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="start"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorSecondary"
+        android:text="Login"
+        android:textColor="?attr/colorOnSecondary"
+        android:fontFamily="@font/lexend_semi_bold"
+        android:textSize="20dp"/>
+
+</LinearLayout>

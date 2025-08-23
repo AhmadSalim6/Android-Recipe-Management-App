@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/edittext_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="?attr/colorPrimary" /> <!-- Background color -->
+
+<!--    <stroke-->
+<!--        android:width="2dp"-->
+<!--        android:color="#fd4d34" /> &lt;!&ndash; Orange border &ndash;&gt;-->
+
+    <corners android:radius="12dp" /> <!-- Rounded edges -->
+
+</shape>

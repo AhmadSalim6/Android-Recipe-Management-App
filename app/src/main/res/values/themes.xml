@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Practice" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white1</item>
+        <item name="android:windowBackground">@color/off_white</item>
+        <item name="colorOnPrimary">@color/gray</item>
+        <item name="colorSurface">@color/gray</item>
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/light_orange</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="Theme.Practice" parent="Base.Theme.Practice" />
+</resources>

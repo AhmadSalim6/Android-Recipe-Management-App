@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base dark theme for Practice app -->
+    <style name="Base.Theme.Practice" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/dark_gray</item>
+        <item name="android:windowBackground">@color/dark_gray</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/dark_gray</item>
+        <item name="colorSecondary">@color/orange</item>
+        <item name="colorSecondaryVariant">@color/light_orange</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Practice" parent="Base.Theme.Practice" />
+</resources>
