@@ -10,4 +10,9 @@
     <color name="gray">#7d7b7c</color>
     <color name="red">#FF0000</color>
     <color name="off_white">#e4e4e4</color>
+    <color name="profile_background">#E3F2FD</color>
+    <color name="profile_border">#2196F3</color>
+    <color name="error_color">#F44336</color>
+    <color name="success_color">#4CAF50</color>
+    <color name="purple">#6441A9</color>
 </resources>
