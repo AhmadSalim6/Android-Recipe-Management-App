@@ -1,4 +1,4 @@
-package com.example.practice;
+package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -24,8 +24,8 @@ import com.example.MyApplication.R;
         setContentView(R.layout.login_page);
 
         emailInput = findViewById(R.id.email);
-        passwordInput = findViewById(R.id.password);
         nameInput = findViewById(R.id.name);
+        passwordInput = findViewById(R.id.password);
         loginButton = findViewById(R.id.Login);
         registerRedirect = findViewById(R.id.register);
 
@@ -34,6 +34,7 @@ import com.example.MyApplication.R;
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nameInput.setVisibility(View.GONE);
                 String email = emailInput.getText().toString().trim();
                 String password = passwordInput.getText().toString().trim();
 
@@ -49,7 +50,6 @@ import com.example.MyApplication.R;
         registerRedirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nameInput.setVisibility(View.VISIBLE);
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
