@@ -55,3 +55,33 @@ class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Rating (recipe_id, user_id, points) VALUES (7, 4, 4)");
     }
 }
+public boolean addUser(String name, String email, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("email", email);
+        values.put("password", password);
+
+        long result = db.insert("users", null, values);
+        db.close();
+        return result != -1;
+    }
+
+    public boolean checkEmailExists(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email = ?", new String[]{email});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
+    }
+
+    public boolean validateUser(String email, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email = ? AND password = ?", new String[]{email, password});
+        boolean valid = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return valid;
+    }
+}
