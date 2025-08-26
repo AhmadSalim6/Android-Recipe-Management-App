@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.practice;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
