@@ -67,21 +67,12 @@ public boolean addUser(String name, String email, String password) {
         return result != -1;
     }
 
-    public boolean checkEmailExists(String email) {
+   public boolean checkEmailExists(String email, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email = ?", new String[]{email});
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email=? AND password=?", new String[]{email, password});
         boolean exists = cursor.getCount() > 0;
         cursor.close();
         db.close();
         return exists;
-    }
-
-    public boolean validateUser(String email, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email = ? AND password = ?", new String[]{email, password});
-        boolean valid = cursor.getCount() > 0;
-        cursor.close();
-        db.close();
-        return valid;
     }
 }
