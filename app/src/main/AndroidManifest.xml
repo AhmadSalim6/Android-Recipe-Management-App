@@ -27,6 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Recipe_Cards_List"
+            android:exported="false" />
+        <activity
+            android:name=".RecipeDetails"
+            android:exported="false" />
     </application>
 
 </manifest>

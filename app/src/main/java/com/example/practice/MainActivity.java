@@ -1,6 +1,7 @@
 package com.example.practice;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -38,12 +39,17 @@ public class MainActivity extends AppCompatActivity {
 
         // create category list
         categoryList = new ArrayList<>();
-        categoryList.add(new Category("Desserts", R.drawable.desserts));
-        categoryList.add(new Category("Fast Food", R.drawable.fast_food));
-        categoryList.add(new Category("Fast Food", R.drawable.fast_food));
+        categoryList.add(new Category("Dessert", R.drawable.desserts));
+        categoryList.add(new Category("Main Dish", R.drawable.fast_food));
+        categoryList.add(new Category("Appetizers", R.drawable.appetizers));
+
 
         // set adapter
-        adapter = new CategoryAdapter(this, categoryList);
+        adapter = new CategoryAdapter(this, categoryList, category -> {
+            Intent intent = new Intent(MainActivity.this, Recipe_Cards_List.class);
+            intent.putExtra("category", category.getName());
+            startActivity(intent);
+        });
         recyclerView.setAdapter(adapter);
         //Ahmed Code//
 
@@ -108,10 +114,10 @@ public class MainActivity extends AppCompatActivity {
 
     private java.util.List<Recipe> loadRecipes(SQLiteDatabase db) {
         java.util.List<Recipe> recipes = new java.util.ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT id, name, user_id, image, category, steps, cooking_time FROM Recipe", null);
+        Cursor cursor = db.rawQuery("SELECT id, name, user_id, image, category, ingredients, steps, cooking_time FROM Recipe", null);
         if (cursor.moveToFirst()) {
             do {
-                recipes.add(new Recipe(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.isNull(6) ? null : cursor.getInt(6)));
+                recipes.add(new Recipe(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.isNull(7) ? null : cursor.getInt(7)));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -154,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         values.put("user_id", 1);
         values.put("image", "new.jpg");
         values.put("category", "Test");
+        values.put("ingredients", "Test ingredients");
         values.put("steps", "Test steps");
         values.put("cooking_time", 20);
         db.insert("Recipe", null, values);

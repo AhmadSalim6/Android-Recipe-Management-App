@@ -1,6 +1,6 @@
 package com.example.practice;
 
-class Rating {
+public class Rating {
     private int recipeId;
     private int userId;
     private int points;
