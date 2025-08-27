@@ -1,5 +1,6 @@
 package com.example.practice;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -59,8 +60,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Rating (recipe_id, user_id, points) VALUES (7, 4, 4)");
     }
 
-}
-public boolean addUser(String name, String email, String password) {
+
+    public boolean addUser(String name, String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);
