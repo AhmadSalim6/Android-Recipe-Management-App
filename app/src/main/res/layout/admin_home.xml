@@ -10,156 +10,147 @@
         android:id="@+id/Enter_recipe_details_tv"
         android:layout_width="187dp"
         android:layout_height="51dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginBottom="61dp"
         android:text="Enter recipe details"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintBottom_toTopOf="@+id/Name_et"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintBottom_toBottomOf="@+id/Name_et"
+        app:layout_constraintEnd_toStartOf="@+id/Name_et"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
+        app:layout_constraintTop_toTopOf="@+id/Name_et" />
 
     <EditText
         android:id="@+id/Name_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="178dp"
+        android:layout_marginEnd="53dp"
         android:ems="10"
         android:hint="Enter the name"
         android:inputType="text"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/User_id_et"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/User_id_et"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
-
-    <TextView
-        android:id="@+id/User_id_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
-        android:text="User ID"
-        app:layout_constraintEnd_toEndOf="@+id/Name_tv"
-        app:layout_constraintStart_toStartOf="@+id/Name_tv"
-        app:layout_constraintTop_toBottomOf="@+id/Name_tv" />
-
-    <EditText
-        android:id="@+id/User_id_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:ems="10"
-        android:hint="Enter User ID"
-        android:inputType="text"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/Image_et"
-        app:layout_constraintStart_toStartOf="@+id/Image_et"
-        app:layout_constraintTop_toBottomOf="@+id/Name_et" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Image_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
         android:text="Image"
-        app:layout_constraintEnd_toEndOf="@+id/User_id_tv"
-        app:layout_constraintStart_toStartOf="@+id/User_id_tv"
-        app:layout_constraintTop_toBottomOf="@+id/User_id_tv" />
+        app:layout_constraintBottom_toBottomOf="@+id/Image_et"
+        app:layout_constraintEnd_toStartOf="@+id/Image_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Image_et" />
 
     <EditText
         android:id="@+id/Image_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:hint="Enter the image link"
         android:inputType="text"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/Category_et"
-        app:layout_constraintStart_toStartOf="@+id/Category_et"
-        app:layout_constraintTop_toBottomOf="@+id/User_id_et" />
+        app:layout_constraintStart_toStartOf="@+id/Name_et"
+        app:layout_constraintTop_toBottomOf="@+id/Name_et" />
 
     <TextView
         android:id="@+id/Category_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
         android:text="Category"
-        app:layout_constraintEnd_toEndOf="@+id/Image_tv"
-        app:layout_constraintStart_toStartOf="@+id/Image_tv"
-        app:layout_constraintTop_toBottomOf="@+id/Image_tv" />
+        app:layout_constraintBottom_toBottomOf="@+id/Category_et"
+        app:layout_constraintEnd_toStartOf="@+id/Category_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Category_et" />
 
     <EditText
         android:id="@+id/Category_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:hint="Enter the category"
         android:inputType="text"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/Steps_et"
-        app:layout_constraintStart_toStartOf="@+id/Steps_et"
+        app:layout_constraintStart_toStartOf="@+id/Image_et"
         app:layout_constraintTop_toBottomOf="@+id/Image_et" />
+
+
+    <TextView
+        android:id="@+id/Ingredients_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingrediants"
+        app:layout_constraintBottom_toBottomOf="@+id/Ingredients_et"
+        app:layout_constraintEnd_toStartOf="@+id/Ingredients_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Ingredients_et" />
+
+    <EditText
+        android:id="@+id/Ingredients_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="Enter the Ingrediants"
+        android:inputType="text"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/Category_et"
+        app:layout_constraintTop_toBottomOf="@+id/Category_et" />
 
     <TextView
         android:id="@+id/Steps_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
         android:text="Steps"
-        app:layout_constraintEnd_toEndOf="@+id/Category_tv"
-        app:layout_constraintStart_toStartOf="@+id/Category_tv"
-        app:layout_constraintTop_toBottomOf="@+id/Category_tv" />
+        app:layout_constraintBottom_toBottomOf="@+id/Steps_et"
+        app:layout_constraintEnd_toStartOf="@+id/Steps_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Steps_et" />
 
     <EditText
         android:id="@+id/Steps_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:hint="Enter steps"
         android:inputType="text"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/Cooking_time_et"
-        app:layout_constraintStart_toStartOf="@+id/Cooking_time_et"
-        app:layout_constraintTop_toBottomOf="@+id/Category_et" />
+        app:layout_constraintStart_toStartOf="@+id/Ingredients_et"
+        app:layout_constraintTop_toBottomOf="@+id/Ingredients_et" />
 
     <TextView
         android:id="@+id/Cooking_time_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
         android:text="cooking time"
-        app:layout_constraintEnd_toEndOf="@+id/Steps_tv"
-        app:layout_constraintStart_toStartOf="@+id/Steps_tv"
-        app:layout_constraintTop_toBottomOf="@+id/Steps_tv" />
+        app:layout_constraintBottom_toBottomOf="@+id/Cooking_time_et"
+        app:layout_constraintEnd_toStartOf="@+id/Cooking_time_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Cooking_time_et" />
 
     <EditText
         android:id="@+id/Cooking_time_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:hint="Enter Cooking time"
         android:inputType="text"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/Steps_et"
         app:layout_constraintTop_toBottomOf="@+id/Steps_et" />
 
     <Button
@@ -167,22 +158,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Recipe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintBottom_toBottomOf="@+id/Show_recipes_btn"
+        app:layout_constraintEnd_toStartOf="@+id/Show_recipes_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Cooking_time_tv"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintTop_toTopOf="@+id/Show_recipes_btn" />
 
     <Button
         android:id="@+id/Show_recipes_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="99dp"
         android:text="Show Recipes"
-        app:layout_constraintBottom_toBottomOf="@+id/Add_recipe_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Add_recipe_btn"
-        app:layout_constraintTop_toTopOf="@+id/Add_recipe_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

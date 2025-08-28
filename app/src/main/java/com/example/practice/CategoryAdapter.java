@@ -16,7 +16,7 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private final Context context;
     private final List<Category> categoryList;
-    private int selectedPosition = 0; // Default to "All" (position 0)
+    private int selectedPosition = 0;
     private final OnCategoryClickListener clickListener;
 
     public interface OnCategoryClickListener {
@@ -40,29 +40,25 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Category category = categoryList.get(position);
 
-        // Bind data
         holder.textView.setText(category.getName());
 
-        // Load image
-        String imageName = category.getPhotoId();
+        String imageName = category.getImageName();
         int imageResId = context.getResources().getIdentifier(
                 imageName, "drawable", context.getPackageName());
         if (imageResId != 0) {
             holder.imageView.setImageResource(imageResId);
         } else {
-            holder.imageView.setImageResource(R.drawable.ic_launcher_foreground); // Placeholder
+            holder.imageView.setImageResource(R.drawable.ic_launcher_foreground);
         }
 
-        // Highlight selected category
         if (position == selectedPosition) {
-            holder.itemView.setBackgroundResource(R.drawable.category_txt_bg_selected); // Create this drawable
-            holder.textView.setTextColor(ContextCompat.getColor(context, android.R.color.black));
+            holder.itemView.setBackgroundResource(R.drawable.category_txt_bg_selected);
+            holder.textView.setTextColor(ContextCompat.getColor(context, android.R.color.white));
         } else {
             holder.itemView.setBackgroundResource(R.drawable.category_txt_bg);
             holder.textView.setTextColor(ContextCompat.getColor(context, android.R.color.black));
         }
 
-        // Handle click
         holder.itemView.setOnClickListener(v -> {
             int previousPosition = selectedPosition;
             selectedPosition = holder.getAdapterPosition();

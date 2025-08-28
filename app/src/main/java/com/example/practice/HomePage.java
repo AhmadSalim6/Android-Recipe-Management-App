@@ -19,18 +19,16 @@ public class HomePage extends AppCompatActivity implements CategoryAdapter.OnCat
     private CategoryAdapter categoryAdapter;
     private UserAdapter recipeAdapter;
     private DatabaseHelper dbHelper;
-    private int userId = 1; // Hardcoded for testing; replace with actual user ID from login
-    private String currentCategory = "All"; // Track current category
+    private int userId = 1; // Hardcoded; replace with actual user ID
+    private String currentCategory = "All";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-        // Initialize DatabaseHelper
         dbHelper = new DatabaseHelper(getApplicationContext());
 
-        // Set up category RecyclerView
         categoryRecyclerView = findViewById(R.id.categoryRecyclerView);
         categoryRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -39,7 +37,6 @@ public class HomePage extends AppCompatActivity implements CategoryAdapter.OnCat
         categoryAdapter = new CategoryAdapter(this, categoryList, this);
         categoryRecyclerView.setAdapter(categoryAdapter);
 
-        // Set up recipe RecyclerView
         recipeRecyclerView = findViewById(R.id.recipeRecycler);
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -47,7 +44,6 @@ public class HomePage extends AppCompatActivity implements CategoryAdapter.OnCat
         recipeAdapter = new UserAdapter(this, cursor, userId);
         recipeRecyclerView.setAdapter(recipeAdapter);
 
-        // Set up search bar
         EditText searchBar = findViewById(R.id.search_bar);
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -61,8 +57,8 @@ public class HomePage extends AppCompatActivity implements CategoryAdapter.OnCat
                 String query = s.toString().trim();
                 Cursor newCursor = dbHelper.searchBar(query);
                 recipeAdapter.swapCursor(newCursor);
-                currentCategory = "All"; // Reset category filter on search
-                categoryAdapter.notifyDataSetChanged(); // Update selected state
+                currentCategory = "All";
+                categoryAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -78,7 +74,7 @@ public class HomePage extends AppCompatActivity implements CategoryAdapter.OnCat
     protected void onDestroy() {
         super.onDestroy();
         if (recipeAdapter != null) {
-            recipeAdapter.swapCursor(null); // Close cursor
+            recipeAdapter.swapCursor(null);
         }
     }
 }

@@ -13,8 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecipesAdapterAdmin extends RecyclerView.Adapter<com.example.practice.RecipesAdapterAdmin.ViewHolder> {
-    public Cursor cursor;
+public class RecipesAdapterAdmin extends RecyclerView.Adapter<RecipesAdapterAdmin.ViewHolder> {
+    private Cursor cursor;
 
     public RecipesAdapterAdmin(Cursor cursor) {
         this.cursor = cursor;
@@ -22,130 +22,142 @@ public class RecipesAdapterAdmin extends RecyclerView.Adapter<com.example.practi
 
     @Override
     public int getItemCount() {
-        return cursor.getCount();
+        return cursor != null ? cursor.getCount() : 0;
     }
-
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        System.out.println("LOLPAPDLPALD111111111111111111");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_card_admin, parent, false);
+
+        System.out.println("LOLPAPDDq32432222222222222222222222222");
+
         return new ViewHolder(view, this);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (!cursor.moveToPosition(position)) {
+        if (cursor == null || !cursor.moveToPosition(position)) {
             return;
         }
 
+        System.out.println("LOLPAPDLPALD67676767676767");
+
+        int recipeId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
         String recipeName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-        int recipeUserID = cursor.getInt(cursor.getColumnIndexOrThrow("user_id"));
         String recipeImage = cursor.getString(cursor.getColumnIndexOrThrow("image"));
         String recipeCategory = cursor.getString(cursor.getColumnIndexOrThrow("category"));
+        String recipeIngredients = cursor.getString(cursor.getColumnIndexOrThrow("ingredients"));
         String recipeSteps = cursor.getString(cursor.getColumnIndexOrThrow("steps"));
         int recipeCookingTime = cursor.getInt(cursor.getColumnIndexOrThrow("cooking_time"));
 
+        System.out.println("LOLPAPDLPALDdslfkpsdkfpodskf");
+
+
         holder.editTextName.setText(recipeName);
-        holder.editTextUserID.setText(String.valueOf(recipeUserID));
+        holder.editTextCategory.setText(recipeCategory);
+        holder.editTextIngredients.setText(recipeIngredients);
+        holder.editTextSteps.setText(recipeSteps);
+        holder.editTextCookingTime.setText(String.valueOf(recipeCookingTime));
 
         int imageResId = holder.itemView.getContext().getResources().getIdentifier(
                 recipeImage, "drawable", holder.itemView.getContext().getPackageName());
         if (imageResId != 0) {
             holder.editTextImage.setImageResource(imageResId);
         } else {
-            holder.editTextImage.setImageResource(R.drawable.ic_launcher_foreground); // Example placeholder
+            holder.editTextImage.setImageResource(R.drawable.ic_launcher_foreground);
         }
-        holder.imageFileNameTextView.setText(recipeImage); // Set the image file name in the TextView
+        holder.imageFileNameTextView.setText(recipeImage);
+        holder.recipeId = recipeId;
 
-        holder.editTextCategory.setText(recipeCategory);
-        holder.editTextSteps.setText(recipeSteps);
-        holder.editTextCookingTime.setText(String.valueOf(recipeCookingTime));
+        holder.editTextName.clearFocus();
+        holder.editTextCategory.clearFocus();
+        holder.editTextIngredients.clearFocus();
+        holder.editTextSteps.clearFocus();
+        holder.editTextCookingTime.clearFocus();
+        holder.imageFileNameTextView.clearFocus();
     }
+
+    public void swapCursor(Cursor newCursor) {
+
+        System.out.println("LOL3ady");
+
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+        cursor = newCursor;
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public EditText editTextName;
-        public EditText editTextUserID;
         public ImageView editTextImage;
-        public TextView imageFileNameTextView;
+        public EditText imageFileNameTextView;
         public EditText editTextCategory;
+        public EditText editTextIngredients;
         public EditText editTextSteps;
         public EditText editTextCookingTime;
+        public Button updateBtn;
+        public Button deleteBtn;
+        public int recipeId;
+        private final RecipesAdapterAdmin recyclerAdapter;
 
-        public final Button updateBtn;
-        public final Button deleteBtn;
-        com.example.practice.RecipesAdapterAdmin recyclerAdapter;
-
-        public ViewHolder(View view, com.example.practice.RecipesAdapterAdmin recyclerAdapter) {
+        public ViewHolder(View view, RecipesAdapterAdmin recyclerAdapter) {
             super(view);
+            this.recyclerAdapter = recyclerAdapter;
 
+
+            System.out.println("LOLANA HENA");
             editTextName = view.findViewById(R.id.Name_et);
-            editTextUserID = view.findViewById(R.id.User_id_et);
             editTextImage = view.findViewById(R.id.Image_et);
-            imageFileNameTextView = view.findViewById(R.id.image_name_tv);
+            imageFileNameTextView = view.findViewById(R.id.image_name_et); // Assuming this ID from xml
             editTextCategory = view.findViewById(R.id.Category_et);
+            editTextIngredients = view.findViewById(R.id.Ingredients_et);
             editTextSteps = view.findViewById(R.id.Steps_et);
             editTextCookingTime = view.findViewById(R.id.Cooking_time_et);
-
             updateBtn = view.findViewById(R.id.update_btn);
             deleteBtn = view.findViewById(R.id.delete_btn);
 
-            // Set the recyclerAdapter to the ViewHolder
-            this.recyclerAdapter = recyclerAdapter;
 
-            // Clear focus from the EditText
-            editTextName.clearFocus();
-            editTextUserID.clearFocus();
-            editTextImage.clearFocus();
-            editTextCategory.clearFocus();
-            editTextSteps.clearFocus();
-            editTextCookingTime.clearFocus();
-            imageFileNameTextView.clearFocus();
 
-            DatabaseHelper recipes = new DatabaseHelper(itemView.getContext());
+            DatabaseHelper dbHelper = new DatabaseHelper(view.getContext());
 
             updateBtn.setOnClickListener(v -> {
+                try {
+                    int recipePosition = getAdapterPosition();
+                    if (recipePosition != RecyclerView.NO_POSITION && recyclerAdapter.cursor.moveToPosition(recipePosition)) {
+                        String newRecipe = editTextName.getText().toString().trim();
+                        String newImage = imageFileNameTextView.getText().toString().trim();
+                        String newCategory = editTextCategory.getText().toString().trim();
+                        String newIngredients = editTextIngredients.getText().toString().trim();
+                        String newSteps = editTextSteps.getText().toString().trim();
+                        String newCookingTimeStr = editTextCookingTime.getText().toString().trim();
 
-                int recipePosition = getAdapterPosition();
-                Cursor cursor = recyclerAdapter.cursor;
+                        if (newRecipe.isEmpty() || newIngredients.isEmpty() || newSteps.isEmpty() || newCookingTimeStr.isEmpty()) {
+                            Toast.makeText(view.getContext(), "Please fill in all required fields", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                if (recipePosition != RecyclerView.NO_POSITION && cursor.moveToPosition(recipePosition)) {
-
-                    // Get the movieId from the Cursor
-                    int recipeId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-                    String newRecipe = editTextName.getText().toString();
-                    int newUserID = Integer.parseInt(editTextUserID.getText().toString());
-                    String newImage = imageFileNameTextView.getText().toString(); // Get image name from TextView
-
-                    String newCategory = editTextCategory.getText().toString();
-                    String newSteps = editTextSteps.getText().toString();
-                    int newCookingTime = Integer.parseInt(editTextCookingTime.getText().toString());
-                    recipes.updateOne(recipeId, newRecipe , newUserID, newImage, newCategory, newSteps, newCookingTime);
-
-                    //Update data in the Cursor
-                    recyclerAdapter.cursor = recipes.fetchAll();
-                    //Notify the adapter that the data has changed to update the RecyclerView
-                    recyclerAdapter.notifyItemChanged(recipePosition);
-
-                    Toast.makeText(view.getContext(), "Recipe Updated", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(view.getContext(), "Recipe Not Updated", Toast.LENGTH_SHORT).show();
+                        int newCookingTime = Integer.parseInt(newCookingTimeStr);
+                        dbHelper.updateOne(recipeId, newRecipe, newImage, newCategory, newIngredients, newSteps, newCookingTime);
+                        recyclerAdapter.swapCursor(dbHelper.fetchAll());
+                        Toast.makeText(view.getContext(), "Recipe Updated", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(view.getContext(), "Recipe Not Updated", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(view.getContext(), "Invalid Cooking Time", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(view.getContext(), "Error updating recipe: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
 
             deleteBtn.setOnClickListener(v -> {
                 int recipePosition = getAdapterPosition();
-                Cursor cursor = recyclerAdapter.cursor;
-
-                if (recipePosition != RecyclerView.NO_POSITION && cursor.moveToPosition(recipePosition)) {
-                    // Get the movieId from the Cursor
-                    int recipeId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-                    recipes.deleteOne(recipeId);
-
-                    recyclerAdapter.cursor = recipes.fetchAll();
-                    recyclerAdapter.notifyItemRemoved(recipePosition);
-                    recyclerAdapter.notifyItemRangeChanged(recipePosition, recyclerAdapter.getItemCount());
-
+                if (recipePosition != RecyclerView.NO_POSITION && recyclerAdapter.cursor.moveToPosition(recipePosition)) {
+                    dbHelper.deleteOne(recipeId);
+                    recyclerAdapter.swapCursor(dbHelper.fetchAll());
                     Toast.makeText(view.getContext(), "Recipe Deleted", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(view.getContext(), "Recipe Not Deleted", Toast.LENGTH_SHORT).show();
