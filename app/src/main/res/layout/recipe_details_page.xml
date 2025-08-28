@@ -53,12 +53,15 @@ android:background="?attr/colorPrimaryVariant">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/img_item"
+
+
+
                 android:layout_width="230dp"
                 android:layout_height="230dp"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ionela"
+                android:src="@drawable/burger1"
                 app:shapeAppearanceOverlay="@style/CircularImage" />
 
         </LinearLayout>

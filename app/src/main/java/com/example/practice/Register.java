@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.practice.R;
-
 class RegisterActivity extends AppCompatActivity {
     EditText nameInput, emailInput, passwordInput;
     Button registerButton, loginRedirect;

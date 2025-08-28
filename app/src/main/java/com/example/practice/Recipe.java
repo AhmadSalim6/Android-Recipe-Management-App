@@ -4,17 +4,15 @@ import java.io.Serializable;
 public class Recipe implements Serializable {
     private int id;
     private String name;
-    private int userId;
     private String image;
     private String category;
     private String ingredients;
     private String steps;
     private Integer cookingTime;
 
-    public Recipe(int id, String name, int userId, String image, String category, String ingredients, String steps, Integer cookingTime) {
+    public Recipe(int id, String name, String image, String category, String ingredients, String steps, Integer cookingTime) {
         this.id = id;
         this.name = name;
-        this.userId = userId;
         this.image = image;
         this.category = category;
         this.ingredients = ingredients;
@@ -28,10 +26,6 @@ public class Recipe implements Serializable {
 
     public String getName() {
         return name;
-    }
-
-    public int getUserId() {
-        return userId;
     }
 
     public String getImage() {
@@ -54,8 +48,5 @@ public class Recipe implements Serializable {
         return cookingTime;
     }
 
-    @Override
-    public String toString() {
-        return "Recipe{id=" + id + ", name='" + name + "', userId=" + userId + "}";
-    }
+
 }

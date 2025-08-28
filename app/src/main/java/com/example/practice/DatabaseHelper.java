@@ -6,11 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "CookingApp.db";
+public class DatabaseHelper extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "CookingApp";
     private static final int DATABASE_VERSION = 2;
 
     public DatabaseHelper(Context context) {
@@ -19,11 +19,32 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Users (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "password TEXT NOT NULL, " + "email TEXT UNIQUE NOT NULL)");
-        db.execSQL("CREATE TABLE Recipe (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "user_id INTEGER NOT NULL, " + "image TEXT, " + "category TEXT, " + "ingredients TEXT NOT NULL, " + "steps TEXT NOT NULL, " + "cooking_time INTEGER, " + "FOREIGN KEY(user_id) REFERENCES Users(id) ON DELETE CASCADE)");
-        db.execSQL("CREATE TABLE Favorite (" + "recipe_id INTEGER NOT NULL, " + "user_id INTEGER NOT NULL, " + "PRIMARY KEY (recipe_id, user_id), " + "FOREIGN KEY(recipe_id) REFERENCES Recipe(id) ON DELETE CASCADE, " + "FOREIGN KEY(user_id) REFERENCES Users(id) ON DELETE CASCADE)");
-        db.execSQL("CREATE TABLE Rating (" + "recipe_id INTEGER NOT NULL, " + "user_id INTEGER NOT NULL, " + "points INTEGER CHECK(points BETWEEN 1 AND 5), " + "PRIMARY KEY (recipe_id, user_id), " + "FOREIGN KEY(recipe_id) REFERENCES Recipe(id) ON DELETE CASCADE, " + "FOREIGN KEY(user_id) REFERENCES Users(id) ON DELETE CASCADE)");
-        insertSeedData(db);
+        db.execSQL("CREATE TABLE Users (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT NOT NULL, " +
+                "password TEXT NOT NULL, " +
+                "email TEXT UNIQUE NOT NULL)");
+        db.execSQL("CREATE TABLE Recipe (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT NOT NULL, " +
+                "image TEXT, " +
+                "category TEXT, " +
+                "ingredients TEXT NOT NULL, " +
+                "steps TEXT NOT NULL, " +
+                "cooking_time INTEGER)");
+        db.execSQL("CREATE TABLE Favorite (" +
+                "recipe_id INTEGER NOT NULL, " +
+                "user_id INTEGER NOT NULL, " +
+                "PRIMARY KEY (recipe_id, user_id), " +
+                "FOREIGN KEY(recipe_id) REFERENCES Recipe(id) ON DELETE CASCADE, " +
+                "FOREIGN KEY(user_id) REFERENCES Users(id) ON DELETE CASCADE)");
+        db.execSQL("CREATE TABLE Rating (" +
+                "recipe_id INTEGER NOT NULL, " +
+                "user_id INTEGER NOT NULL, " +
+                "points INTEGER CHECK(points BETWEEN 1 AND 5), " +
+                "PRIMARY KEY (recipe_id, user_id), " +
+                "FOREIGN KEY(recipe_id) REFERENCES Recipe(id) ON DELETE CASCADE, " +
+                "FOREIGN KEY(user_id) REFERENCES Users(id) ON DELETE CASCADE)");
     }
 
     @Override
@@ -35,50 +56,141 @@ class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    private void insertSeedData(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO Users (name, password, email) VALUES ('Ali', 'pass123', 'ali@example.com')");
-        db.execSQL("INSERT INTO Users (name, password, email) VALUES ('Sara', 'pass456', 'sara@example.com')");
-        db.execSQL("INSERT INTO Users (name, password, email) VALUES ('Omar', 'pass789', 'omar@example.com')");
-        db.execSQL("INSERT INTO Users (name, password, email) VALUES ('Mona', 'pass111', 'mona@example.com')");
-        db.execSQL("INSERT INTO Users (name, password, email) VALUES ('Hassan', 'pass222', 'hassan@example.com')");
-        db.execSQL("INSERT INTO Recipe (name, user_id, image, category, ingredients, steps, cooking_time) VALUES ('Chocolate Cake', 1, 'choco', 'Dessert', '1½ cups flour,1 cup sugar,½ cup cocoa powder,1 tsp baking powder,1 tsp baking soda,½ tsp salt,2 eggs,1 cup milk,1 tsp vanilla extract', 'Preheat oven to 180°C (350°F),Mix dry ingredients,Add wet ingredients,Mix well,Pour into greased baking pan,Bake for 30–35 min,check with a toothpick', 45)");
-        db.execSQL("INSERT INTO Recipe (name, user_id, image, category, ingredients, steps, cooking_time) VALUES ('Pasta Alfredo', 1, 'pasta', 'Main Dish', '250g fettuccine pasta,2 tbsp butter,1 cup heavy cream,½ cup grated Parmesan cheese,2 cloves garlic,minced,Salt & pepper to taste', 'Boil pasta in salted water until al dente,In a pan melt butter and sauté garlic,Add cream,simmer 3–4 min,Stir in Parmesan until smooth,Toss pasta in the sauce', 30)");
-        db.execSQL("INSERT INTO Recipe (name, user_id, image, category, ingredients, steps, cooking_time) VALUES ('Salad', 2, 'salad', 'Appetizers', '1 cucumber,2 tomatoes,½ red onion,1 carrot,2 tbsp olive oil,1 tbsp lemon juice,Salt & pepper', 'Wash and chop all vegetables,Place in a bowl,Drizzle with olive oil and lemon juice,Add salt and pepper,toss well', 15)");
-        db.execSQL("INSERT INTO Recipe (name, user_id, image, category, ingredients, steps, cooking_time) VALUES ('Grilled Chicken', 3, 'chicken', 'Main', '1 whole chicken (or 4 thighs),2 tbsp olive oil,2 tsp paprika,1 tsp garlic powder,1 tsp black pepper,1 tsp salt,1 tsp cumin', 'Clean chicken,pat dry,Mix spices with olive oil then rub on chicken,Preheat grill to medium-high heat,Grill chicken 25–30 min per side (until cooked inside)', 60)");
-        db.execSQL("INSERT INTO Recipe (name, user_id, image, category, ingredients, steps, cooking_time) VALUES ('Soup', 3, 'soup', 'Appetizers', '2 carrots,2 potatoes,1 onion,2 celery sticks,3 cups vegetable broth,Salt & pepper', 'Chop vegetables,Heat pot with onion and celery,sauté 2–3 min,Add carrots and potatoes,stir,Pour in broth,bring to boil,Simmer 20–25 min until soft,Blend with hand blender for creamy soup', 40)");
-        db.execSQL("INSERT INTO Recipe (name, user_id, image, category, ingredients, steps, cooking_time) VALUES ('Pizza', 4, 'pizza', 'Main Dish', '2 cups flour,1 tsp yeast,½ cup warm water,1 tbsp olive oil,½ cup tomato sauce,1 cup shredded mozzarella,Toppings (pepperoni, veggies, etc.)', 'Mix flour,yeast,water,oil then knead dough,Let dough rise 1 hr,Roll out dough on tray,Spread tomato sauce,Add cheese and toppings,Bake at 220°C (425°F) for 15–20 min', 50)");
-        db.execSQL("INSERT INTO Recipe (name, user_id, image, category, ingredients, steps, cooking_time) VALUES ('Ice Cream', 5, 'icecream', 'Dessert', '2 cups milk,1 cup heavy cream,¾ cup sugar,1 tsp vanilla extract', 'Heat milk and cream until warm,Stir in sugar until dissolved,Add vanilla,mix well,Cool in fridge for 2 hrs,Churn in ice cream maker (or freeze and stir every 30 min),Freeze until solid', 120)");
-        db.execSQL("INSERT INTO Favorite (recipe_id, user_id) VALUES (1, 2)");
-        db.execSQL("INSERT INTO Favorite (recipe_id, user_id) VALUES (3, 1)");
-        db.execSQL("INSERT INTO Favorite (recipe_id, user_id) VALUES (4, 5)");
-        db.execSQL("INSERT INTO Favorite (recipe_id, user_id) VALUES (6, 3)");
-        db.execSQL("INSERT INTO Favorite (recipe_id, user_id) VALUES (7, 4)");
-        db.execSQL("INSERT INTO Rating (recipe_id, user_id, points) VALUES (1, 2, 5)");
-        db.execSQL("INSERT INTO Rating (recipe_id, user_id, points) VALUES (3, 1, 4)");
-        db.execSQL("INSERT INTO Rating (recipe_id, user_id, points) VALUES (4, 5, 5)");
-        db.execSQL("INSERT INTO Rating (recipe_id, user_id, points) VALUES (6, 3, 3)");
-        db.execSQL("INSERT INTO Rating (recipe_id, user_id, points) VALUES (7, 4, 4)");
+    public void createNew(String name, String image, String category, String ingredients, String steps, int cooking_time) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues row = new ContentValues();
+        row.put("name", name);
+        row.put("image", image);
+        row.put("category", category);
+        row.put("ingredients", ingredients);
+        row.put("steps", steps);
+        row.put("cooking_time", cooking_time);
+        db.insert("Recipe", null, row);
+        db.close();
     }
 
+    public void updateOne(int recipeId, String name, String image, String category, String ingredients, String steps, int cooking_time) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues row = new ContentValues();
+        row.put("name", name);
+        row.put("image", image);
+        row.put("category", category);
+        row.put("ingredients", ingredients);
+        row.put("steps", steps);
+        row.put("cooking_time", cooking_time);
+        db.update("Recipe", row, "id = ?", new String[]{String.valueOf(recipeId)});
+        db.close();
+    }
+
+    public void deleteOne(int recipeId) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("Recipe", "id = ?", new String[]{String.valueOf(recipeId)});
+        db.close();
+    }
+
+    public Cursor fetchAll() {
+        System.out.println("LOL1");
+        SQLiteDatabase db = getReadableDatabase();
+        System.out.println("LOL2");
+        String[] rowDetails = {"id", "name", "image", "category", "ingredients", "steps", "cooking_time"};
+        System.out.println("LOL3");
+        Cursor cur= db.query("Recipe", rowDetails, null, null, null, null, null);
+        System.out.println("LOL4");
+        return cur;
+    }
 
     public boolean addUser(String name, String email, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);
         values.put("email", email);
         values.put("password", password);
-
-        long result = db.insert("users", null, values);
+        long result = db.insert("Users", null, values);
         db.close();
         return result != -1;
     }
 
-   public boolean checkEmailExists(String email, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email=? AND password=?", new String[]{email, password});
+    public Cursor searchBar(String query) {
+        SQLiteDatabase db = getReadableDatabase();
+        String[] rowDetails = {"id", "name", "image", "category", "ingredients", "steps", "cooking_time"};
+        String selection = "name LIKE ?";
+        String[] selectionArgs = {"%" + query + "%"};
+        return db.query("Recipe", rowDetails, selection, selectionArgs, null, null, null);
+    }
+
+    public float getAverageRating(int recipeId) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT AVG(points) as avg_rating FROM Rating WHERE recipe_id = ?",
+                new String[]{String.valueOf(recipeId)});
+        float averageRating = 0;
+        if (cursor.moveToFirst()) {
+            averageRating = cursor.getFloat(cursor.getColumnIndexOrThrow("avg_rating"));
+        }
+        cursor.close();
+        return averageRating;
+    }
+
+    public boolean isFavorite(int recipeId, int userId) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(
+                "Favorite",
+                new String[]{"recipe_id", "user_id"},
+                "recipe_id = ? AND user_id = ?",
+                new String[]{String.valueOf(recipeId), String.valueOf(userId)},
+                null, null, null);
+        boolean isFavorite = cursor.getCount() > 0;
+        cursor.close();
+        return isFavorite;
+    }
+
+    public void addFavorite(int recipeId, int userId) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("recipe_id", recipeId);
+        values.put("user_id", userId);
+        db.insert("Favorite", null, values);
+        db.close();
+    }
+
+    public void removeFavorite(int recipeId, int userId) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("Favorite", "recipe_id = ? AND user_id = ?", new String[]{String.valueOf(recipeId), String.valueOf(userId)});
+        db.close();
+    }
+
+    public Cursor filterByCategory(String category) {
+        SQLiteDatabase db = getReadableDatabase();
+        String[] rowDetails = {"id", "name", "image", "category", "ingredients", "steps", "cooking_time"};
+        String selection = category.equals("All") ? null : "category = ?";
+        String[] selectionArgs = category.equals("All") ? null : new String[]{category};
+        return db.query("Recipe", rowDetails, selection, selectionArgs, null, null, null);
+    }
+
+    public boolean checkEmailExists(String email, String password) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Users WHERE email = ? AND password = ?", new String[]{email, password});
         boolean exists = cursor.getCount() > 0;
         cursor.close();
         db.close();
         return exists;
+    }
+
+    public List<Category> getAllCategories() {
+        List<Category> categories = new ArrayList<>();
+        categories.add(new Category("All", "all_category")); // Updated placeholder
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT DISTINCT category, MIN(image) as image FROM Recipe WHERE category IS NOT NULL GROUP BY category",
+                null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String categoryName = cursor.getString(cursor.getColumnIndexOrThrow("category"));
+                String imageName = cursor.getString(cursor.getColumnIndexOrThrow("image"));
+                categories.add(new Category(categoryName, imageName));
+            }
+            cursor.close();
+        }
+        return categories;
     }
 }

@@ -2,18 +2,18 @@ package com.example.practice;
 
 public class Category {
     private String name;
-    private int photoId; // resource id for the image
+    private String imageName;
 
-    public Category(String name, int photoId) {
+    public Category(String name, String imageName) {
         this.name = name;
-        this.photoId = photoId;
+        this.imageName = imageName;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getPhotoId() {
-        return photoId;
+    public String getImageName() {
+        return imageName;
     }
 }

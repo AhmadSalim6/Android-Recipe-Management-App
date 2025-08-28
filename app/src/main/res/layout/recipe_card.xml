@@ -1,90 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="200dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:card_view="http://schemas.android.com/tools"
-    android:layout_marginBottom="30dp"
+
+    android:layout_marginHorizontal="20dp"
     android:orientation="vertical"
     android:gravity="center">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end">
-
-        <ImageButton
-            android:id="@+id/btn_fav"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@null"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="1dp"
-            app:tint="?attr/colorOnPrimary"
-            android:contentDescription="@string/favourites"
-            android:padding="5dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/heart" />
-
-    </LinearLayout>
-    <ImageView
-        android:id="@+id/img_recipe"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:background="@drawable/category_photo_shape"
-        android:clipToOutline="true"
-        android:src="@drawable/pan_cake"
-        android:layout_marginBottom="5dp"
-        android:scaleType="centerCrop"/>
-
-    <TextView
-        android:id="@+id/txt_recipeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lexend_semi_bold"
-        android:textSize="16sp"
-        android:textColor="?attr/colorOnSecondary"
         android:background="@drawable/button_bg"
-        android:layout_marginBottom="5dp"/>
-
-    <LinearLayout
+        android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/search_bar_bg"
-        android:gravity="center"
-        android:orientation="horizontal">
-
+        android:layout_height="wrap_content">
         <ImageView
-            android:layout_width="19dp"
-            android:layout_height="19dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="6dp"
-            android:background="@drawable/stopwatch" />
+            android:id="@+id/image_ib"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/category_photo_shape"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pan_cake" />
 
-        <TextView
-            android:id="@+id/txt_prepareTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:fontFamily="@font/lexend_semi_bold"
-            android:textColor="?attr/android:textColor"
-            android:textSize="16sp" />
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/lexend_semi_bold"
+                android:text="Pan Cakes"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="20dp"/>
+<!--                android:background="@drawable/button_bg"-->
 
 
-        <ImageView
-            android:layout_width="19dp"
-            android:layout_height="19dp"
-            android:layout_marginEnd="6dp"
-            android:background="@drawable/star" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
 
-        <TextView
-            android:id="@+id/txt_recipeRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/lexend_semi_bold"
-            android:textColor="?attr/android:textColor"
-            android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@drawable/stopwatch" />
+
+                <TextView
+                    android:id="@+id/cooking_time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/lexend_semi_bold"
+                    android:text="15 min"
+                    android:textColor="?attr/android:textColor"
+                    android:textSize="16dp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="12dp"
+                    android:layout_marginRight="20dp"
+                    android:background="?attr/colorOnPrimary"/>
+
+                <TextView
+                    android:id="@+id/rating_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:fontFamily="@font/lexend_semi_bold"
+                    android:text="4.8"
+                    android:textColor="?attr/android:textColor"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/star" />
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <ImageButton
+                android:id="@+id/favourite_ib"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+
+                android:background="@null"
+                android:contentDescription="favourites"
+                android:padding="5dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/heart"
+                app:tint="?attr/colorOnPrimary" />
+
+            <ImageButton
+                android:id="@+id/more_info_ib"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginRight="1dp"
+                android:background="@null"
+                android:contentDescription="more info"
+                android:padding="3dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/arrow_upper_right"
+                app:tint="?attr/colorOnPrimary" />
+
+        </LinearLayout>
+
+
+
+
 
     </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#e8e8e8">
+
+
+    </View>
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/category_tv"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="15dp"-->
+<!--        android:background="@drawable/button_bg"-->
+<!--        android:fontFamily="@font/lexend_semi_bold"-->
+<!--        android:text="657 Cal"-->
+<!--        android:textColor="?attr/colorOnSecondary"-->
+<!--        android:textSize="16dp" />-->
+
+
 </LinearLayout>

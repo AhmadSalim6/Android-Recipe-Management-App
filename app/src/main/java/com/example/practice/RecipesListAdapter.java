@@ -77,11 +77,11 @@ public class RecipesListAdapter extends RecyclerView.Adapter<RecipesListAdapter.
         TextView recipeName, recipePrepareTime, recipeRating;
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
-            fav = itemView.findViewById(R.id.btn_fav);
+            fav = itemView.findViewById(R.id.btn_fav);/*
             recipeImg = itemView.findViewById(R.id.img_recipe);
             recipeName = itemView.findViewById(R.id.txt_recipeName);
             recipePrepareTime = itemView.findViewById(R.id.txt_prepareTime);
-            recipeRating = itemView.findViewById(R.id.txt_recipeRating);
+            recipeRating = itemView.findViewById(R.id.txt_recipeRating);*/
         }
     }
 }

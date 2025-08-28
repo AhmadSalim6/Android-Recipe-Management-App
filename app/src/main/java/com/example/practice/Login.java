@@ -13,15 +13,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.practice.R;
 
  class LoginActivity extends AppCompatActivity {
-    EditText emailInput, passwordInput , nameInput;
-    Button loginButton, registerRedirect;
+     static {
+         System.out.println("LOL)()()()()()");
+     }
+
+     EditText emailInput, passwordInput , nameInput;
+     Button loginButton, registerRedirect;
+
     LoginManager loginManager;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+        System.out.println("LOL12");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
+
 
         emailInput = findViewById(R.id.email);
         nameInput = findViewById(R.id.name);
@@ -40,7 +51,7 @@ import com.example.practice.R;
 
                 if (loginManager.loginUser(email, password)) {
                     Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    startActivity(new Intent(LoginActivity.this, HomePage.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid email or password!", Toast.LENGTH_SHORT).show();
                 }

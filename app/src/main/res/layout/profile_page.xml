@@ -21,7 +21,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ionela"
+            android:src="@drawable/burger1"
             android:background="@drawable/category_photo_shape"
             android:clipToOutline="true"
             android:layout_marginBottom="5dp"

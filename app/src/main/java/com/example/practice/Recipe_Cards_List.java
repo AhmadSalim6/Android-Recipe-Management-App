@@ -39,6 +39,8 @@ public class Recipe_Cards_List extends AppCompatActivity {
         recipeRatings = new HashMap<>();
         dbHelper = new DatabaseHelper(this);
 
+
+
         // Get category from intent
         String category = getIntent().getStringExtra("category");
         TextView txtCategoryName = findViewById(R.id.txt_category_name);
@@ -62,7 +64,7 @@ public class Recipe_Cards_List extends AppCompatActivity {
 
         // Load recipes for this category
         Cursor cursor = db.rawQuery(
-                "SELECT id, name, user_id, image, category, ingredients, steps, cooking_time FROM Recipe WHERE category = ?",
+                "SELECT id, name, image, category, ingredients, steps, cooking_time FROM Recipe WHERE category = ?",
                 new String[]{category}
         );
 
@@ -70,14 +72,13 @@ public class Recipe_Cards_List extends AppCompatActivity {
             do {
                 int id = cursor.getInt(0);
                 String name = cursor.getString(1);
-                int userId = cursor.getInt(2);
                 String image = cursor.getString(3);
                 String cat = cursor.getString(4);
                 String ingredients = cursor.getString(5);
                 String steps = cursor.getString(6);
                 Integer cookingTime = cursor.isNull(7) ? null : cursor.getInt(7);
 
-                Recipe recipe = new Recipe(id, name, userId, image, cat, ingredients, steps, cookingTime);
+                Recipe recipe = new Recipe(id, name,  image, cat, ingredients, steps, cookingTime);
                 recipeList.add(recipe);
 
                 // Load average rating for this recipe
