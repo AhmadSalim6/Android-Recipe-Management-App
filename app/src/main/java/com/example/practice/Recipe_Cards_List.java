@@ -39,6 +39,8 @@ public class Recipe_Cards_List extends AppCompatActivity {
         recipeRatings = new HashMap<>();
         dbHelper = new DatabaseHelper(this);
 
+
+
         // Get category from intent
         String category = getIntent().getStringExtra("category");
         TextView txtCategoryName = findViewById(R.id.txt_category_name);
