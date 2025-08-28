@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.practice.R;
-import com.example.practice.DatabaseHelper;
 
 class RegisterActivity extends AppCompatActivity {
     EditText nameInput, emailInput, passwordInput;

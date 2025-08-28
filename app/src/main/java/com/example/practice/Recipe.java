@@ -1,20 +1,23 @@
 package com.example.practice;
+import java.io.Serializable;
 
-class Recipe {
+public class Recipe implements Serializable {
     private int id;
     private String name;
     private int userId;
     private String image;
     private String category;
+    private String ingredients;
     private String steps;
     private Integer cookingTime;
 
-    public Recipe(int id, String name, int userId, String image, String category, String steps, Integer cookingTime) {
+    public Recipe(int id, String name, int userId, String image, String category, String ingredients, String steps, Integer cookingTime) {
         this.id = id;
         this.name = name;
         this.userId = userId;
         this.image = image;
         this.category = category;
+        this.ingredients = ingredients;
         this.steps = steps;
         this.cookingTime = cookingTime;
     }
@@ -37,6 +40,10 @@ class Recipe {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getIngredients() {
+        return ingredients;
     }
 
     public String getSteps() {

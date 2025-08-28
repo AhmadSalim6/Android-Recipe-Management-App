@@ -17,12 +17,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     private Context context;
     private List<Category> categoryList;
+    private OnCategoryClickListener listener;
 
-    public CategoryAdapter(Context context, List<Category> categoryList) {
+    public interface OnCategoryClickListener {
+        void onCategoryClick(Category category);
+    }
+    public CategoryAdapter(Context context, List<Category> categoryList, OnCategoryClickListener listener) {
         this.context = context;
         this.categoryList = categoryList;
+        this.listener = listener;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,6 +43,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         // Bind data
         holder.textView.setText(category.getName());
         holder.imageView.setImageResource(category.getPhotoId());
+
+        //Click listener
+        holder.itemView.setOnClickListener(v -> {
+            listener.onCategoryClick(category);
+        });
     }
 
     @Override

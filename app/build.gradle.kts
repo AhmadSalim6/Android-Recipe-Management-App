@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.practice"
-        minSdk = 30
+        minSdk = 28
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -40,4 +40,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    //recycler view
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
+    // For control over item selection of both touch and mouse driven selection
+    implementation("androidx.recyclerview:recyclerview-selection:1.2.0")
+    implementation("androidx.cardview:cardview:1.0.0")
 }

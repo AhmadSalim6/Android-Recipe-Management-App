@@ -15,6 +15,7 @@
         android:scaleType="centerCrop"
         android:layout_marginBottom="35dp"
         android:clipToOutline="true"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +27,7 @@
         android:layout_marginLeft="40dp"
         android:fontFamily="@font/lexend_semi_bold"/>
 
+    <!-- Name input -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -52,6 +54,7 @@
             android:fontFamily="@font/lexend_semi_bold"/>
     </LinearLayout>
 
+    <!-- Email input -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -73,10 +76,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/login_edit_txt_bg"
-            android:hint=" user name or email"
+            android:hint="user name or email"
             android:fontFamily="@font/lexend_semi_bold"/>
     </LinearLayout>
 
+    <!-- Password input -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -90,7 +94,6 @@
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
             app:tint="?attr/colorOnPrimary"
-
             android:src="@drawable/padlock"/>
 
         <EditText
@@ -99,8 +102,11 @@
             android:layout_height="match_parent"
             android:background="@drawable/login_edit_txt_bg"
             android:hint="password"
+            android:inputType="textPassword"
             android:fontFamily="@font/lexend_semi_bold"/>
     </LinearLayout>
+
+    <!-- Register button -->
     <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"
@@ -112,6 +118,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginBottom="15dp"
         android:layout_gravity="start"/>
+
+    <!-- Login button -->
     <Button
         android:id="@+id/Login"
         android:layout_width="wrap_content"
@@ -121,5 +129,4 @@
         android:textColor="?attr/colorOnSecondary"
         android:fontFamily="@font/lexend_semi_bold"
         android:textSize="20dp"/>
-
 </LinearLayout>
