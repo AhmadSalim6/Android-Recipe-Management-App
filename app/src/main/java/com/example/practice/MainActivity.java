@@ -1,16 +1,17 @@
 package com.example.practice;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,18 +24,27 @@ public class MainActivity extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
 
         //Ahmed Code//
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.categoryRecyclerView);
+//        recyclerView = findViewById(R.id.categoryRecyclerView);
+//
+//        recyclerView.setLayoutManager(
+//                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+//        );
 
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        );
+
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainer, new ProfileFragment())
+                .commit();
 
         // create category list
         categoryList = new ArrayList<>();
@@ -43,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
         categoryList.add(new Category("Fast Food", R.drawable.fast_food));
 
         // set adapter
-        adapter = new CategoryAdapter(this, categoryList);
-        recyclerView.setAdapter(adapter);
+//        adapter = new CategoryAdapter(this, categoryList);
+//        recyclerView.setAdapter(adapter);
         //Ahmed Code//
 
 
@@ -158,6 +168,5 @@ public class MainActivity extends AppCompatActivity {
         values.put("cooking_time", 20);
         db.insert("Recipe", null, values);
     }
-
 
 }

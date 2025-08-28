@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.practice;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.MyApplication.R;
+import com.example.practice.R;
+import com.example.practice.DatabaseHelper;
 
 class RegisterActivity extends AppCompatActivity {
     EditText nameInput, emailInput, passwordInput;
