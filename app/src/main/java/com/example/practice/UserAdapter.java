@@ -130,7 +130,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION && adapter.cursor.moveToPosition(position)) {
                     int recipeId = adapter.cursor.getInt(adapter.cursor.getColumnIndexOrThrow("id"));
-                    Intent intent = new Intent(view.getContext(), Recipe_Cards_List.class);
+                    Intent intent = new Intent(view.getContext(), RecipeDetails.class);
                     intent.putExtra("RECIPE_ID", recipeId);
                     view.getContext().startActivity(intent);
                 }

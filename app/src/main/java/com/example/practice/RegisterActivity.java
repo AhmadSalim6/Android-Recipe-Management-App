@@ -8,9 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.example.practice.LoginActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
-class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     EditText nameInput, emailInput, passwordInput;
     Button registerButton, loginRedirect;
     RegisterManager registerManager;
@@ -26,6 +27,8 @@ class RegisterActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.password);
         registerButton = findViewById(R.id.register);
         loginRedirect = findViewById(R.id.Login);
+
+
 
         registerManager = new RegisterManager(this);
 

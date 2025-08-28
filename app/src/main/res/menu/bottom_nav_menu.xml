@@ -2,14 +2,14 @@
     <item
         android:id="@+id/nav_home"
         android:title="Home"
-        android:icon="@drawable/star"/>
+        android:icon="@drawable/home11"/>
     <item
         android:id="@+id/nav_favorites"
         android:title="Favorites"
         
-        android:icon="@drawable/star"/>
+        android:icon="@drawable/heart_filled"/>
     <item
         android:id="@+id/nav_profile"
         android:title="Profile"
-        android:icon="@drawable/star"/>
+        android:icon="@drawable/account"/>
 </menu>

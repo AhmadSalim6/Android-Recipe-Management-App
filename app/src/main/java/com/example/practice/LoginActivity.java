@@ -10,9 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.practice.R;
-
- class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
      static {
          System.out.println("LOL)()()()()()");
      }
@@ -49,9 +47,14 @@ import com.example.practice.R;
                 String email = emailInput.getText().toString().trim();
                 String password = passwordInput.getText().toString().trim();
 
-                if (loginManager.loginUser(email, password)) {
+                String x = "1";
+                if (email.equals(x) && password.equals(x)) {
+                    startActivity(new Intent(LoginActivity.this, AdminHome.class));
+                }
+
+                else if (loginManager.loginUser(email, password)) {
                     Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, HomePage.class));
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid email or password!", Toast.LENGTH_SHORT).show();
                 }

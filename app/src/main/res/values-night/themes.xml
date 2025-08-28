@@ -5,7 +5,7 @@
         <item name="colorPrimaryVariant">@color/dark_gray</item>
         <item name="android:windowBackground">@color/dark_gray</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSurface">@color/dark_gray</item>
+        <item name="colorSurface">@color/abc</item>
         <item name="colorSecondary">@color/orange</item>
         <item name="colorSecondaryVariant">@color/light_orange</item>
         <item name="colorOnSecondary">@color/black</item>

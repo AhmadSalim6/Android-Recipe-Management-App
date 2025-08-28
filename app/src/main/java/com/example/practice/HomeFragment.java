@@ -1,19 +1,22 @@
 package com.example.practice;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class HomePage extends AppCompatActivity implements CategoryAdapter.OnCategoryClickListener {
+public class HomeFragment extends Fragment implements CategoryAdapter.OnCategoryClickListener {
+
     private RecyclerView categoryRecyclerView;
     private RecyclerView recipeRecyclerView;
     private CategoryAdapter categoryAdapter;
@@ -23,35 +26,31 @@ public class HomePage extends AppCompatActivity implements CategoryAdapter.OnCat
     private String currentCategory = "All";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_page);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.home_page, container, false);
 
-        dbHelper = new DatabaseHelper(getApplicationContext());
+        dbHelper = new DatabaseHelper(requireContext());
 
-        categoryRecyclerView = findViewById(R.id.categoryRecyclerView);
+        categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView);
         categoryRecyclerView.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+                new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
 
         List<Category> categoryList = dbHelper.getAllCategories();
-        categoryAdapter = new CategoryAdapter(this, categoryList, this);
+        categoryAdapter = new CategoryAdapter(requireContext(), categoryList, this);
         categoryRecyclerView.setAdapter(categoryAdapter);
 
-        recipeRecyclerView = findViewById(R.id.recipeRecycler);
-        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recipeRecyclerView = view.findViewById(R.id.recipeRecycler);
+        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         Cursor cursor = dbHelper.filterByCategory(currentCategory);
-        recipeAdapter = new UserAdapter(this, cursor, userId);
+        recipeAdapter = new UserAdapter(requireContext(), cursor, userId);
         recipeRecyclerView.setAdapter(recipeAdapter);
 
-        EditText searchBar = findViewById(R.id.search_bar);
+        EditText searchBar = view.findViewById(R.id.search_bar);
         searchBar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
                 String query = s.toString().trim();
@@ -61,6 +60,8 @@ public class HomePage extends AppCompatActivity implements CategoryAdapter.OnCat
                 categoryAdapter.notifyDataSetChanged();
             }
         });
+
+        return view;
     }
 
     @Override
@@ -71,8 +72,8 @@ public class HomePage extends AppCompatActivity implements CategoryAdapter.OnCat
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         if (recipeAdapter != null) {
             recipeAdapter.swapCursor(null);
         }

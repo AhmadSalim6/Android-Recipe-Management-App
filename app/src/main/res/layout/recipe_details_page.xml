@@ -81,8 +81,8 @@ android:background="?attr/colorPrimaryVariant">
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/lexend_semi_bold"
-                android:text="Ramen"
-                android:textColor="#000000"
+                android:text="Burger"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="22sp" />
 
             <LinearLayout
@@ -98,8 +98,8 @@ android:background="?attr/colorPrimaryVariant">
                     android:layout_height="match_parent"
                     android:layout_marginEnd="6dp"
                     android:fontFamily="@font/lexend_semi_bold"
-                    android:text="4.8"
-                    android:textColor="#FFFFFF"
+                    android:text="0"
+                    android:textColor="?attr/android:textColor"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -109,43 +109,7 @@ android:background="?attr/colorPrimaryVariant">
                     android:layout_marginEnd="2dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="@drawable/star_white_outline" />
-
-                <ImageView
-                    android:id="@+id/img_rate2"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginEnd="2dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/star_white_outline" />
-
-                <ImageView
-                    android:id="@+id/img_rate3"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginEnd="2dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/star_white_outline" />
-
-                <ImageView
-                    android:id="@+id/img_rate4"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginEnd="2dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/star_white_outline" />
-
-                <ImageView
-                    android:id="@+id/img_rate5"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginEnd="2dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/star_white_outline" />
+                    android:background="@drawable/star" />
 
                 <View
                     android:layout_width="0dp"
@@ -173,7 +137,7 @@ android:background="?attr/colorPrimaryVariant">
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/lexend_semi_bold"
                 android:text="Ingredients"
-                android:textColor="#000000"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="22sp" />
 
             <TextView
@@ -183,7 +147,7 @@ android:background="?attr/colorPrimaryVariant">
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/lexend_semi_bold"
                 android:text="Eggs\nmilk\nTortilla\nCorn"
-                android:textColor="#FFFFFF"
+                android:textColor="?attr/android:textColor"
                 android:textSize="16sp" />
 
             <TextView
@@ -192,7 +156,7 @@ android:background="?attr/colorPrimaryVariant">
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/lexend_semi_bold"
                 android:text="Steps"
-                android:textColor="#000000"
+                android:textColor="?colorSecondary"
                 android:textSize="22sp" />
 
             <TextView
@@ -202,7 +166,7 @@ android:background="?attr/colorPrimaryVariant">
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/lexend_semi_bold"
                 android:text="Eggs\nmilk\nTortilla\nCorn"
-                android:textColor="#FFFFFF"
+                android:textColor="?attr/android:textColor"
                 android:textSize="16sp" />
 
         </LinearLayout>
