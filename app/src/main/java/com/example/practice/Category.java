@@ -2,9 +2,9 @@ package com.example.practice;
 
 public class Category {
     private String name;
-    private int photoId; // resource id for the image
+    private String photoId; // resource id for the image
 
-    public Category(String name, int photoId) {
+    public Category(String name, String photoId) {
         this.name = name;
         this.photoId = photoId;
     }
@@ -13,7 +13,7 @@ public class Category {
         return name;
     }
 
-    public int getPhotoId() {
+    public String getPhotoId() {
         return photoId;
     }
 }

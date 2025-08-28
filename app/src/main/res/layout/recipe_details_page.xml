@@ -14,13 +14,14 @@
         android:layout_weight="4">
 
         <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end"
             android:background="@null"
-            android:src="@drawable/heart"
             android:scaleType="centerInside"
+            android:src="@drawable/heart"
             app:tint="?attr/android:textColor"
-            android:layout_gravity="end"/>
+            android:contentDescription="Add to favorites"/>
         <ImageView
             android:layout_width="230dp"
             android:layout_height="230dp"
@@ -48,14 +49,15 @@
             android:textColor="?attr/android:textColor"
             android:fontFamily="@font/lexend_semi_bold"
             android:textSize="22dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:fontFamily="@font/lexend_semi_bold"
             android:text="Ramen is a Japanese noodle soup consisting of springy wheat noodles served in a flavorful broth, often topped with sliced pork, soft-boiled eggs, green onions, and nori (seaweed). The broth can vary — rich and creamy tonkotsu (pork bone), salty shio, savory shoyu (soy sauce), or spicy miso."
             android:textColor="?attr/colorOnPrimary"
-            android:fontFamily="@font/lexend_semi_bold"
-            android:textSize="15dp"/>
+            android:textSize="18dp" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,18 +78,7 @@
                 android:textColor="?attr/android:textColor"
                 android:layout_marginRight="25dp"
                 android:text="4.8" />
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/fire" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/lexend_semi_bold"
-                android:textSize="16dp"
-                android:textColor="?attr/android:textColor"
-                android:layout_marginRight="25dp"
-                android:text="341 kcal" />
+
             <ImageView
                 android:layout_width="18dp"
                 android:layout_height="18dp"

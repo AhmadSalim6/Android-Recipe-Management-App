@@ -7,38 +7,69 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
+    private final Context context;
+    private final List<Category> categoryList;
+    private int selectedPosition = 0; // Default to "All" (position 0)
+    private final OnCategoryClickListener clickListener;
 
-    private Context context;
-    private List<Category> categoryList;
+    public interface OnCategoryClickListener {
+        void onCategoryClick(String category);
+    }
 
-    public CategoryAdapter(Context context, List<Category> categoryList) {
+    public CategoryAdapter(Context context, List<Category> categoryList, OnCategoryClickListener clickListener) {
         this.context = context;
         this.categoryList = categoryList;
+        this.clickListener = clickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflate the single item layout (category_item.xml)
         View view = LayoutInflater.from(context).inflate(R.layout.category, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Get the category at the current position
         Category category = categoryList.get(position);
 
         // Bind data
         holder.textView.setText(category.getName());
-        holder.imageView.setImageResource(category.getPhotoId());
+
+        // Load image
+        String imageName = category.getPhotoId();
+        int imageResId = context.getResources().getIdentifier(
+                imageName, "drawable", context.getPackageName());
+        if (imageResId != 0) {
+            holder.imageView.setImageResource(imageResId);
+        } else {
+            holder.imageView.setImageResource(R.drawable.ic_launcher_foreground); // Placeholder
+        }
+
+        // Highlight selected category
+        if (position == selectedPosition) {
+            holder.itemView.setBackgroundResource(R.drawable.category_txt_bg_selected); // Create this drawable
+            holder.textView.setTextColor(ContextCompat.getColor(context, android.R.color.black));
+        } else {
+            holder.itemView.setBackgroundResource(R.drawable.category_txt_bg);
+            holder.textView.setTextColor(ContextCompat.getColor(context, android.R.color.black));
+        }
+
+        // Handle click
+        holder.itemView.setOnClickListener(v -> {
+            int previousPosition = selectedPosition;
+            selectedPosition = holder.getAdapterPosition();
+            notifyItemChanged(previousPosition);
+            notifyItemChanged(selectedPosition);
+            clickListener.onCategoryClick(category.getName());
+        });
     }
 
     @Override
@@ -46,7 +77,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return categoryList.size();
     }
 
-    // ViewHolder class (holds the views of one row)
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView imageView;

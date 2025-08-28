@@ -1,6 +1,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -24,13 +25,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/pan_cake"
-            android:clipToOutline="true"
-            android:background="@drawable/search_bar_bg"
-            android:scaleType="centerCrop"/>
 
     </LinearLayout>
 
@@ -47,9 +41,9 @@
         android:orientation="horizontal"
         android:background="@drawable/search_bar_bg"
         android:layout_marginLeft="25dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginRight="25dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="20dp"
         android:paddingVertical="10dp"
         android:paddingHorizontal="5dp"
         android:gravity="center_vertical">
@@ -63,16 +57,16 @@
 
         <EditText
             android:id="@+id/search_bar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="325dp"
+            android:layout_height="36dp"
             android:layout_weight="1"
-            android:hint="Search your favourite food"
-            android:textColor="?attr/colorOnPrimary"
-            android:fontFamily="@font/lexend_semi_bold"
             android:background="@null"
+            android:fontFamily="@font/lexend_semi_bold"
+            android:hint="Search your favourite food"
+            android:inputType="text"
             android:paddingStart="8dp"
-            android:textSize="15dp"
-            android:inputType="text"/>
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp" />
     </LinearLayout>
 
 
